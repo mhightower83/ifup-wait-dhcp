@@ -1,0 +1,13 @@
+save_ip_address()
+{
+        local targetpath="ipv4_interface"
+        if [ -n "$state_dir" -a -n "$new_ip_address" -a -n "$interface" ]; then
+                targetpath="$state_dir/$targetpath"
+#               echo `date +"%b %d %T"` We got a hit $reason "$targetpath/$interface">>/tmp/itworks
+                if [ ! -d $targetpath ]; then
+                        mkdir "$targetpath"
+                fi
+                echo ipv4_address="$new_ip_address" >$targetpath/$interface
+        fi
+}
+save_ip_address
