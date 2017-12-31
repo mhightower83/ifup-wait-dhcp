@@ -1,0 +1,22 @@
+[Unit]
+Description=Wait for an IPv4 address from dhcpcd (to be posted for a specific interface) for network-online.target
+Documentation=man:interfaces(5) man:ifup(8)
+Documentation=Derived from post http://unix.stackexchange.com/questions/209832/debian-systemd-network-online-target-not-working
+Documentation=dhcpcd changed the way things worked. Above post no longer works. Changed to watch for a 
+Documentation=specific interface to update. And, added /etc/dhcpcd.enter-hook to provide an indication 
+Documentation=that we have an IPv4 address.
+
+DefaultDependencies=no
+After=local-fs.target
+After=network.target
+Before=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+TimeoutStartSec=2min
+ExecStart=/bin/sh -ec '\
+  while [ ! -f /var/run/dhcpcd/ipv4_interface/eth0 ]; do sleep 0.2; done'
+
+[Install]
+WantedBy=network-online.target
