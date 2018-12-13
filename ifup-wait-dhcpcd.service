@@ -1,5 +1,5 @@
 [Unit]
-Description=Wait for an IPv4 address from dhcpcd (to be posted for a specific interface) for network-online.target
+Description=Wait for an IPv4 address from dhcpcd to be posted for wlan0 or eth0, needed by network-online.target
 Documentation=man:interfaces(5) man:ifup(8)
 # Derived from post http : //unix.stackexchange.com/questions/209832/debian-systemd-network-online-target-not-working
 # dhcpcd changed the way things worked. Above post no longer works. Changed to watch for a specific interface update.
