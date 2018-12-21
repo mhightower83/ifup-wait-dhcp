@@ -14,7 +14,9 @@ Type=oneshot
 RemainAfterExit=yes
 TimeoutStartSec=2min
 ExecStart=/bin/sh -ec '\
-  while [ ! -f /var/run/dhcpcd/ipv4_interface/eth0 ] && [ ! -f /var/run/dhcpcd/ipv4_interface/wlan0 ]; do sleep 0.2; done'
+  while [ ! -f /var/run/dhcpcd/ipv4_interface/eth0 ] && \
+        [ ! -f /var/run/dhcpcd/ipv4_interface/wlan0 ]; \
+    do sleep 0.2; done'
 
 [Install]
 WantedBy=network-online.target
