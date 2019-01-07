@@ -12,7 +12,7 @@ Before=network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-TimeoutStartSec=2min
+TimeoutStartSec=30
 ExecStart=/bin/sh -ec '\
   while [ ! -f /var/run/dhcpcd/ipv4_interface/eth0 ] && \
         [ ! -f /var/run/dhcpcd/ipv4_interface/wlan0 ]; \
